@@ -20,7 +20,7 @@ class CalculadoraState extends State<Calculadora> {
           children: <Widget>[
             //Texto que mostra o resultado do calculo
             new Text(
-              "Resultado : ${resultado.toStringAsFixed(2)}",
+              "Resultado : ${resultado.toStringAsFixed(3)}",
               style: new TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

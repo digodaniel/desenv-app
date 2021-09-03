@@ -20,7 +20,7 @@ class CalculadoraState extends State<Calculadora> {
           children: <Widget>[
             //Texto que mostra o resultado do calculo
             new Text(
-              "Resultado : $resultado",
+              "Resultado : ${resultado.toStringAsFixed(2)}",
               style: new TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -56,8 +56,47 @@ class CalculadoraState extends State<Calculadora> {
                   color: Colors.blueAccent,
                   onPressed: somar,
                 ),
+                //Botão subtrair
+                new MaterialButton(
+                  child: new Text(
+                    "-",
+                    style: new TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  color: Colors.blueAccent,
+                  onPressed: subtrair,
+                ),
               ],
             ),
+            new Padding(padding: const EdgeInsets.only(top: 10)),
+            new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  new MaterialButton(
+                    child: new Text(
+                      "*",
+                      style: new TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    color: Colors.blueAccent,
+                    onPressed: multiplicar,
+                  ),
+                  new MaterialButton(
+                    child: new Text(
+                      "/",
+                      style: new TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    color: Colors.blueAccent,
+                    onPressed: dividir,
+                  ),
+                ]),
 
             // Espaçamento depois dos botôes
             new Padding(padding: const EdgeInsets.only(top: 20)),
@@ -70,9 +109,9 @@ class CalculadoraState extends State<Calculadora> {
                   child: new Text("Limpar"),
                   color: Colors.grey,
                   onPressed: limpar,
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -82,7 +121,7 @@ class CalculadoraState extends State<Calculadora> {
   //Atributos
   var num1;
   var num2;
-  var resultado; // = 0
+  num resultado = 0;
 
   TextEditingController t1 = new TextEditingController(text: "");
   TextEditingController t2 = new TextEditingController(text: "");
@@ -90,8 +129,8 @@ class CalculadoraState extends State<Calculadora> {
   //Métodos
   void somar() {
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = num.parse(t1.text);
+      num2 = num.parse(t2.text);
       resultado = num1 + num2;
     });
   }
@@ -100,6 +139,31 @@ class CalculadoraState extends State<Calculadora> {
     setState(() {
       t1.text = "";
       t2.text = "";
+      resultado = 0;
+    });
+  }
+
+  void subtrair() {
+    setState(() {
+      num1 = num.parse(t1.text);
+      num2 = num.parse(t2.text);
+      resultado = num1 - num2;
+    });
+  }
+
+  void multiplicar() {
+    setState(() {
+      num1 = num.parse(t1.text);
+      num2 = num.parse(t2.text);
+      resultado = num1 * num2;
+    });
+  }
+
+  void dividir() {
+    setState(() {
+      num1 = num.parse(t1.text);
+      num2 = num.parse(t2.text);
+      resultado = num1 / num2;
     });
   }
 } // fecha a classe CalculadoraState
